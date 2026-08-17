@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up — General Store</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"></span>
+      General Store
+      <span class="brand-tag">Est. Catalog No. 01</span>
+    </a>
+    <nav class="nav-links" id="nav-auth-slot"></nav>
+  </div>
+</header>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h2>Create your account</h2>
+    <p class="auth-sub">Takes about ten seconds. No email verification for this demo.</p>
+
+    <div class="form-error" id="form-error"></div>
+
+    <form id="register-form">
+      <div class="field">
+        <label for="fullName">Full name</label>
+        <input type="text" id="fullName" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" required minlength="6" autocomplete="new-password">
+      </div>
+      <div class="field">
+        <label for="address">Shipping address <span style="font-weight:400;">(optional)</span></label>
+        <textarea id="address" rows="2"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Create account</button>
+    </form>
+
+    <div class="auth-switch">
+      Already have an account? <a href="login.html">Log in</a>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/nav.js"></script>
+<script>
+document.getElementById('register-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errorBox = document.getElementById('form-error');
+  errorBox.style.display = 'none';
+
+  const body = {
+    fullName: document.getElementById('fullName').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    password: document.getElementById('password').value,
+    address: document.getElementById('address').value.trim(),
+  };
+
+  try {
+    const user = await Api.register(body);
+    Session.save(user);
+    showToast('Account created — welcome!');
+    setTimeout(() => (window.location.href = 'index.html'), 600);
+  } catch (err) {
+    errorBox.textContent = err.message || 'Registration failed';
+    errorBox.style.display = 'block';
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — General Store</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"></span>
+      General Store
+      <span class="brand-tag">Est. Catalog No. 01</span>
+    </a>
+    <nav class="nav-links" id="nav-auth-slot"></nav>
+  </div>
+</header>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h2>Welcome back</h2>
+    <p class="auth-sub">Log in to pick up where your cart left off.</p>
+
+    <div class="form-error" id="form-error"></div>
+
+    <form id="login-form">
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+    </form>
+
+    <div class="auth-switch">
+      New here? <a href="register.html">Create an account</a>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/nav.js"></script>
+<script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errorBox = document.getElementById('form-error');
+  errorBox.style.display = 'none';
+
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+
+  try {
+    const user = await Api.login({ email, password });
+    Session.save(user);
+    window.location.href = 'index.html';
+  } catch (err) {
+    errorBox.textContent = err.message || 'Login failed';
+    errorBox.style.display = 'block';
+  }
+});
+</script>
+</body>
+</html>

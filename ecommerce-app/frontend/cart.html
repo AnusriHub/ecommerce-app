@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart — General Store</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"></span>
+      General Store
+      <span class="brand-tag">Est. Catalog No. 01</span>
+    </a>
+    <nav class="nav-links" id="nav-auth-slot"></nav>
+  </div>
+</header>
+
+<div class="page-header container">
+  <h1>Your cart</h1>
+  <p>Review quantities before checking out.</p>
+</div>
+
+<main class="container">
+  <div class="cart-layout">
+    <div id="cart-items">
+      <!-- cart lines injected here -->
+    </div>
+
+    <aside class="summary-card">
+      <h3>Order summary</h3>
+      <div class="summary-row">
+        <span>Items</span>
+        <span id="summary-count">0</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span>
+        <span id="summary-total">₹0.00</span>
+      </div>
+      <button class="btn btn-accent btn-block" id="checkout-btn" style="margin-top:14px;">Place order</button>
+    </aside>
+  </div>
+
+  <div class="empty-state" id="empty-cart" style="display:none;">
+    <h3>Your cart is empty</h3>
+    <p>Head back to the catalog and add something you like.</p>
+    <a href="index.html" class="btn btn-primary" style="margin-top:14px; display:inline-flex;">Browse products</a>
+  </div>
+</main>
+
+<div id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

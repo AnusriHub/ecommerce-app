@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General Store — Catalog</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark"></span>
+      General Store
+      <span class="brand-tag">Est. Catalog No. 01</span>
+    </a>
+    <nav class="nav-links" id="nav-auth-slot"></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Full catalog</div>
+    <h1>Everything on the shelf, priced plainly.</h1>
+    <p>Browse the current stock below. Add anything to your cart and check out — no fuss, no upsells.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="filter-bar">
+    <input type="text" id="search-input" placeholder="Search products by name…">
+    <button class="chip active" data-category="">All</button>
+    <div id="category-chips" style="display:flex; gap:10px; flex-wrap:wrap;"></div>
+  </div>
+</div>
+
+<main class="container catalog">
+  <div class="grid" id="product-grid">
+    <!-- product cards injected here -->
+  </div>
+  <div class="empty-state" id="empty-state" style="display:none;">
+    <h3>Nothing matches that search</h3>
+    <p>Try a different keyword or clear the filter.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="container">Simple E-commerce Demo — Spring Boot + MySQL + vanilla JS</div>
+</footer>
+
+<div id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/shop.js"></script>
+</body>
+</html>
